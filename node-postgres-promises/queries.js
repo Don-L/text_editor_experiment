@@ -24,7 +24,7 @@ function getAllText(req, res, next) {
     });
 }
 
-//can't vouch for all the following code working in it's current form - some debugging may be required
+//can't vouch for all the following code working in its current form - some debugging may be required
 
 // function getSingleItem(req, res, next) {
 //   let itemID = parseInt(req.params.id);
@@ -77,8 +77,10 @@ function getAllText(req, res, next) {
 // }
 
 function updateText(req, res, next) {
-  db.none('update text set the_text=$1 where id=$5',
-    [req.body.sample_column])
+  console.log('put attempt');
+  console.log(req.body.the_text);
+  db.none(`update text set the_text=$1 where id=$2`,
+    [req.body.the_text, 1])
     .then(function () {
       res.status(200)
         .json({
@@ -90,6 +92,7 @@ function updateText(req, res, next) {
       return next(err);
     });
 }
+
 
 
 
